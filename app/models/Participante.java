@@ -25,29 +25,42 @@ public class Participante {
 	@NotNull
 	@MaxLength(value = 70)
 	private String nome;
+	
+	@NotNull
+	private String senha;
 
 	@Email
 	@NotNull
 	@MaxLength(value = 70)
 	private String email;
 
-	@ManyToOne
-	private Evento evento;
+	
 
 	public Participante() {
 	}
 
-	public Participante(String nome, String email, Evento evento)
+	/**
+	 * 
+	 * @param nome
+	 * @param email
+	 * @throws PessoaInvalidaException
+	 */
+	public Participante(String nome, String email, String senha)
 			throws PessoaInvalidaException {
 		setNome(nome);
 		setEmail(email);
-		setEvento(evento);
+		setSenha(senha);
 	}
 
 	public String getNome() {
 		return nome;
 	}
 
+	/**
+	 * 
+	 * @param nome
+	 * @throws PessoaInvalidaException
+	 */
 	public void setNome(String nome) throws PessoaInvalidaException {
 		if (nome == null)
 			throw new PessoaInvalidaException("Parametro nulo");
@@ -60,6 +73,11 @@ public class Participante {
 		return email;
 	}
 
+	/**
+	 * 
+	 * @param email
+	 * @throws PessoaInvalidaException
+	 */
 	public void setEmail(String email) throws PessoaInvalidaException {
 		if (email == null)
 			throw new PessoaInvalidaException("Parametro nulo");
@@ -70,13 +88,17 @@ public class Participante {
 		this.email = email;
 	}
 
-	public Evento getEvento() {
-		return evento;
+	/**
+	 * @return the senha
+	 */
+	public String getSenha() {
+		return senha;
 	}
 
-	public void setEvento(Evento evento) throws PessoaInvalidaException {
-		if (evento == null)
-			throw new PessoaInvalidaException("Parametro nulo");
-		this.evento = evento;
+	/**
+	 * @param senha the senha to set
+	 */
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 }

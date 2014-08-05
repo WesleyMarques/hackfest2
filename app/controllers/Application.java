@@ -24,6 +24,9 @@ public class Application extends Controller {
 
 	@Transactional
     public static Result index(){
+		if (session().get("user") == null) {
+			return redirect(routes.Login.show());
+		}
 		if (!criouEventosFake){
 			List<Evento> eventos = criarEventosFakes();
 			criarParticipacoesFake(eventos);
@@ -39,11 +42,11 @@ public class Application extends Controller {
 
 	private static List<Evento> criarEventosFakes() {
 		try {
-			List<Evento> eventos = new ArrayList<>();
+			List<Evento> eventos = new ArrayList<Evento>();
 			Evento evento;
 			Calendar calendar;
 	
-			List<Tema> temas = new ArrayList<>();
+			List<Tema> temas = new ArrayList<Tema>();
 			
 			temas.add(Tema.DESAFIOS);
 			temas.add(Tema.PROGRAMACAO);
@@ -55,7 +58,7 @@ public class Application extends Controller {
 			eventos.add(evento);
 			criarEvento(evento);
 			
-			temas = new ArrayList<>();
+			temas = new ArrayList<Tema>();
 			temas.add(Tema.ARDUINO);
 			temas.add(Tema.ELETRONICA);
 			
@@ -66,7 +69,7 @@ public class Application extends Controller {
 			eventos.add(evento);
 			criarEvento(evento);
 	
-			temas = new ArrayList<>();
+			temas = new ArrayList<Tema>();
 			temas.add(Tema.DESAFIOS);
 			temas.add(Tema.PROGRAMACAO);
 			
@@ -77,7 +80,7 @@ public class Application extends Controller {
 			eventos.add(evento);
 			criarEvento(evento);
 	
-			temas = new ArrayList<>();
+			temas = new ArrayList<Tema>();
 			temas.add(Tema.DESAFIOS);
 			temas.add(Tema.PROGRAMACAO);
 			
@@ -88,7 +91,7 @@ public class Application extends Controller {
 			eventos.add(evento);
 			criarEvento(evento);
 	
-			temas = new ArrayList<>();
+			temas = new ArrayList<Tema>();
 			temas.add(Tema.PROGRAMACAO);
 			temas.add(Tema.DESAFIOS);
 			
@@ -100,7 +103,7 @@ public class Application extends Controller {
 			eventos.add(evento);
 			criarEvento(evento);
 	
-			temas = new ArrayList<>();
+			temas = new ArrayList<Tema>();
 			temas.add(Tema.PROGRAMACAO);
 			temas.add(Tema.WEB);
 			
@@ -111,7 +114,7 @@ public class Application extends Controller {
 			eventos.add(evento);
 			criarEvento(evento);
 	
-			temas = new ArrayList<>();
+			temas = new ArrayList<Tema>();
 			temas.add(Tema.ELETRONICA);
 			temas.add(Tema.ARDUINO);
 			
@@ -133,7 +136,7 @@ public class Application extends Controller {
 			eventos.add(evento);
 			criarEvento(evento);
 	
-			temas = new ArrayList<>();
+			temas = new ArrayList<Tema>();
 			temas.add(Tema.DESAFIOS);
 			
 			calendar = Calendar.getInstance();
@@ -143,7 +146,7 @@ public class Application extends Controller {
 			eventos.add(evento);
 			criarEvento(evento);
 
-			temas = new ArrayList<>();
+			temas = new ArrayList<Tema>();
 			temas.add(Tema.PROGRAMACAO);
 			temas.add(Tema.DESAFIOS);
 			
@@ -155,14 +158,14 @@ public class Application extends Controller {
 			criarEvento(evento);
 			
 			return eventos;
-		} catch (EventoInvalidoException _) {
+		} catch (EventoInvalidoException e) {
 			return null;
 		}
 	}
 	
 	private static void criarParticipacoesFake(List<Evento> eventos) {
 		Random rnd = new Random();
-		try {
+		/*try {
 			criarParticipacao(new Participante("Alberto Leça", "alberto_leca@mail.com", eventos.get(rnd.nextInt(3))));
 			criarParticipacao(new Participante("Alberto Leça", "alberto_leca@mail.com", eventos.get(rnd.nextInt(3))));
 			criarParticipacao(new Participante("Alberto Leça", "alberto_leca@mail.com", eventos.get(rnd.nextInt(3))));
@@ -183,7 +186,7 @@ public class Application extends Controller {
 			criarParticipacao(new Participante("Érico Albuquerque", "erico_albuquerque@mail.com", eventos.get(rnd.nextInt(3))));
 			criarParticipacao(new Participante("Érico Albuquerque", "erico_albuquerque@mail.com", eventos.get(rnd.nextInt(3))));
 			criarParticipacao(new Participante("Tairine Reis", "tairine_reis@mail.com", eventos.get(rnd.nextInt(3))));
-		} catch (PessoaInvalidaException _) { }
+		} catch (PessoaInvalidaException e) { }*/
 	}
 	
 	@Transactional

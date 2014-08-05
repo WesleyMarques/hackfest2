@@ -29,7 +29,7 @@ public class EventoController extends Controller {
 	
 		List<Evento> todosEventos = Application.getDao().findAllByClassName("Evento");
 		
-		List<Evento> eventosRequeridos = new ArrayList<>();
+		List<Evento> eventosRequeridos = new ArrayList<Evento>();
 		
 		for (Evento ev : todosEventos) {
 			if (ev.getTemas().contains(Tema.values()[(int) id])){
@@ -44,7 +44,7 @@ public class EventoController extends Controller {
 		
 		try {
 			json = mapper.writeValueAsString(eventosRequeridos);
-		} catch (Exception _) {
+		} catch (Exception e) {
 			return badRequest();
 		}
 		
@@ -75,7 +75,6 @@ public class EventoController extends Controller {
 		} else {
 			Evento evento = Application.getDao().findByEntityId(Evento.class, id);
 			Participante novoParticipante = participanteFormRequest.get();
-			novoParticipante.setEvento(evento);
 			
 			Application.getDao().persist(novoParticipante);
 			Application.getDao().merge(novoParticipante);
