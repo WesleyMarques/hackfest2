@@ -1,4 +1,4 @@
-name := "CCFest"
+name := "hackfest2"
 
 version := "1.0-SNAPSHOT"
 

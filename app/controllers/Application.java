@@ -125,7 +125,7 @@ public class Application extends Controller {
 			eventos.add(evento);
 			criarEvento(evento);
 	
-			temas = new ArrayList<>();
+			temas = new ArrayList<Tema>();
 			temas.add(Tema.ELETRONICA);
 			temas.add(Tema.ARDUINO);
 			
