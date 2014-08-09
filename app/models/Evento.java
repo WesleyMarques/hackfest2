@@ -11,7 +11,10 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -40,23 +43,29 @@ public class Evento {
 	@Required
 	private Date data;
 
-	@OneToMany(mappedBy = "evento")
+
+	@ManyToMany
 	private List<Participante> participantes = new ArrayList<Participante>();
 
 	@ElementCollection
 	@Enumerated(value = EnumType.ORDINAL)
 	@NotNull
 	private List<Tema> temas = new ArrayList<Tema>();
+	
+	@NotNull
+	@OneToOne
+	private Participante admin;
 
 	public Evento() {
 	}
 
-	public Evento(String titulo, String descricao, Date data, List<Tema> temas)
+	public Evento(String titulo, String descricao, Date data, List<Tema> temas, Participante admin)
 			throws EventoInvalidoException {
 		setTitulo(titulo);
 		setDescricao(descricao);
 		setData(data);
 		setTemas(temas);
+		setAdmin(admin);
 	}
 
 	public String getTitulo() {
@@ -81,6 +90,10 @@ public class Evento {
 
 	public List<Tema> getTemas() {
 		return temas;
+	}
+	
+	public void setAdmin(Participante adminName) {
+		this.admin = adminName;
 	}
 
 	public void setTitulo(String titulo) throws EventoInvalidoException {

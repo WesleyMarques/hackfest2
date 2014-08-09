@@ -23,11 +23,11 @@ public class ParticipanteTest {
 	public void setUp(){
 		temas = new ArrayList<Tema>();
 		temas.add(Tema.ARDUINO);
-		try {
-			evento = new Evento("Python na cabeça", "Vamos programar em Python!", new Date(), temas);
+		/*try {
+			//evento = new Evento("Python na cabeça", "Vamos programar em Python!", new Date(), temas);
 		} catch (EventoInvalidoException e) {
 			fail();
-		}
+		}*/
 	}
 	/*
 	@Test

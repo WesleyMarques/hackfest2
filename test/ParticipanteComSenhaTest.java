@@ -40,8 +40,9 @@ public class ParticipanteComSenhaTest {
 		} catch (PessoaInvalidaException e) {
 			fail();
 		}
-		assertTrue(dao.findAllByClassName("participantes").size() != 0);
-		
+		assertTrue(dao.findAllByClassName("participantes").size() != 0);		
 	}
+	
+	
 
 }

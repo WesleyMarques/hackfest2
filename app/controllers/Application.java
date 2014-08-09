@@ -28,8 +28,8 @@ public class Application extends Controller {
 			return redirect(routes.Login.show());
 		}
 		if (!criouEventosFake){
-			List<Evento> eventos = criarEventosFakes();
-			criarParticipacoesFake(eventos);
+			//List<Evento> eventos = criarEventosFakes();
+			//criarParticipacoesFake(eventos);
 
 			criouEventosFake = true;
 		}
@@ -39,7 +39,7 @@ public class Application extends Controller {
 	public static GenericDAO getDao(){
 		return dao;
 	}
-
+	/*
 	private static List<Evento> criarEventosFakes() {
 		try {
 			List<Evento> eventos = new ArrayList<Evento>();
@@ -162,7 +162,7 @@ public class Application extends Controller {
 			return null;
 		}
 	}
-	
+	*/
 	private static void criarParticipacoesFake(List<Evento> eventos) {
 		Random rnd = new Random();
 		/*try {

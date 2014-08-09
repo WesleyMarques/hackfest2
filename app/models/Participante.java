@@ -3,7 +3,6 @@ package models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 import models.exceptions.PessoaInvalidaException;
@@ -11,6 +10,7 @@ import models.exceptions.PessoaInvalidaException;
 import org.hibernate.validator.constraints.Email;
 
 import play.data.validation.Constraints.MaxLength;
+import play.data.validation.Constraints.Required;
 
 @Entity
 public class Participante {
@@ -26,6 +26,7 @@ public class Participante {
 	@MaxLength(value = 70)
 	private String nome;
 	
+	@Required
 	@NotNull
 	private String senha;
 
@@ -52,6 +53,7 @@ public class Participante {
 		setSenha(senha);
 	}
 
+	
 	public String getNome() {
 		return nome;
 	}
