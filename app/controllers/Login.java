@@ -10,11 +10,11 @@ import play.data.Form;
 import play.db.jpa.Transactional;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.login;
+import views.html.*;
 
 public class Login extends Controller {
 	
-	public static Form<Participante> loginForm;
+	public static Form<Participante> loginForm = new Form<Participante>(Participante.class);
 	private static GenericDAO dao = new GenericDAOImpl();
 	
 	public static Result show(){

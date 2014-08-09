@@ -9,10 +9,10 @@ import play.data.Form;
 import play.db.jpa.Transactional;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.registro;
+import views.html.*;
 
 public class Registro extends Controller{
-	public static Form<Participante> registroForm;
+	public static Form<Participante> registroForm = new Form<Participante>(Participante.class);
 	private static GenericDAO dao = new GenericDAOImpl();
 	
 	@Transactional
