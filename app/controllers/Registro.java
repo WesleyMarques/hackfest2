@@ -21,31 +21,43 @@ public class Registro extends Controller{
     }
 
 	@Transactional
-	public static Result registrar() {
+	public static Result registrar() throws Exception{
 
 		Form<Participante> registroPessoa = registroForm.bindFromRequest();
 		Participante u;
 		
 		if (registroForm.hasErrors()) {
 			flash("fail", "Erro na captura dos dados");
-			return badRequest(registro.render(registroForm));
+			return badRequest(registro.render(registroPessoa));
 		}else{
-			u = registroPessoa.get();
-			if (validate(u.getEmail())) {
+			u = criaParticipante(registroPessoa);
+			if (!validate(u.getEmail())) {
 				flash("fail", "Email já está em uso");
-	            return badRequest(registro.render(registroForm));
+	            return badRequest(registro.render(registroPessoa));
 	        } else {
 	        	dao.persist(u);
+	        	dao.flush();
 	            return redirect(routes.Login.show());
 	        }
 			
 		}
 		
     }
+	
+		
+	
+
+	private static Participante criaParticipante(Form<Participante> registroPessoa) throws Exception{
+		Participante p = new Participante();
+		p.setEmail(registroPessoa.get().getEmail());
+		p.setNome(registroPessoa.get().getNome());
+		p.setSenha(registroPessoa.get().getSenha());
+		return p;
+	}
 
 	private static boolean validate(String email) {
 		List<Participante> u = dao.findByAttributeName("Participante", "email", email);
-		if (u == null || u.isEmpty()) {
+		if (u != null && u.isEmpty()) {
 			return true;
 		}
 		return false;

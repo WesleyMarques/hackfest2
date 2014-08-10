@@ -29,7 +29,7 @@ public class Login extends Controller {
 	public static Result authenticate() {
 
 		Form<Participante> loginPessoa = loginForm.bindFromRequest();
-		Participante userA;
+		User userA;
 
 		if (loginPessoa.hasErrors()) {
 			flash("fail", "Erro na captura dos dados");
@@ -46,7 +46,7 @@ public class Login extends Controller {
 	        	Participante user = (Participante) dao.findByAttributeName(
 	        			"Participante", "email", userA.getEmail()).get(0);
 	            session().clear();
-	            session("user", user.getNome());
+	            session("email", user.getEmail());
 	            return redirect(routes.Application.index());
 	        }
 		}
