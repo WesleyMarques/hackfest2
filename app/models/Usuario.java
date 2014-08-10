@@ -16,9 +16,6 @@ public class Usuario {
 	private String	email;
 
 	@Required
-	private String	name;
-
-	@Required
 	private String	senha;
 
 	/**
@@ -36,36 +33,21 @@ public class Usuario {
 	}
 
 	/**
-	 * @return nome do usuario
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * @param name
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	/**
 	 * @return a senha do usuario
 	 */
-	public String getPassword() {
+	public String getSenha() {
 		return senha;
 	}
 
 	/** 
 	 * @param senha
 	 */
-	public void setPassword(String senha) {
+	public void setSenha(String senha) {
 		this.senha = senha;
-		this.senha = String.valueOf(this.hashCode());
-	}
+		}
 
 	@Override
 	public String toString() {
-		return String.format(name+" - "+ email);
+		return String.format(email);
 	}
 }

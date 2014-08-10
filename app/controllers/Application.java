@@ -24,7 +24,7 @@ public class Application extends Controller {
 
 	@Transactional
     public static Result index(){
-		if (session().get("user") == null) {
+		if (session().get("email") == null) {
 			return redirect(routes.Login.show());
 		}
 		if (!criouEventosFake){
