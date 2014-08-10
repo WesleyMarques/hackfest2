@@ -14,7 +14,7 @@ import views.html.*;
 
 public class Login extends Controller {
 	
-	public static Form<Participante> loginForm = new Form<Participante>(Participante.class);
+	public static Form<Participante> loginForm = Form.form(Participante.class);
 	private static GenericDAO dao = new GenericDAOImpl();
 	
 	public static Result show(){
@@ -28,21 +28,29 @@ public class Login extends Controller {
 	@Transactional
 	public static Result authenticate() {
 
-		Participante userA = loginForm.bindFromRequest().get();
+		Form<Participante> loginPessoa = loginForm.bindFromRequest();
+		Participante userA;
 
-		String email = userA.getEmail();
-		String senha = userA.getSenha();
+		if (loginPessoa.hasErrors()) {
+			flash("fail", "Erro na captura dos dados");
+        	return badRequest(login.render(loginForm));						
+		}else{
+			userA = loginPessoa.get();
+			String email = userA.getEmail();
+			String senha = userA.getSenha();
 
-        if (loginForm.hasErrors() || !validate(email, senha)) {
-        	flash("fail", "Email ou Senha Inválidos");
-        	return badRequest(login.render(loginForm));
-        } else {
-        	Participante user = (Participante) dao.findByAttributeName(
-        			"Participante", "email", userA.getEmail()).get(0);
-            session().clear();
-            session("user", user.getNome());
-            return redirect(routes.Application.index());
-        }
+	        if (!validate(email, senha)) {
+	        	flash("fail", "Email ou Senha Inválidos");
+	        	return badRequest(login.render(loginForm));
+	        } else {
+	        	Participante user = (Participante) dao.findByAttributeName(
+	        			"Participante", "email", userA.getEmail()).get(0);
+	            session().clear();
+	            session("user", user.getNome());
+	            return redirect(routes.Application.index());
+	        }
+		}
+		
     }
 	
 	private static boolean validate(String email, String senha) {

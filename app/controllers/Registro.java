@@ -12,7 +12,7 @@ import play.mvc.Result;
 import views.html.*;
 
 public class Registro extends Controller{
-	public static Form<Participante> registroForm = new Form<Participante>(Participante.class);
+	public static Form<Participante> registroForm = Form.form(Participante.class);
 	private static GenericDAO dao = new GenericDAOImpl();
 	
 	@Transactional
@@ -23,15 +23,24 @@ public class Registro extends Controller{
 	@Transactional
 	public static Result registrar() {
 
-		Participante u = registroForm.bindFromRequest().get();
-    	
-		if (registroForm.hasErrors() || validate(u.getEmail())) {
-			flash("fail", "Email já está em uso");
-            return badRequest(registro.render(registroForm));
-        } else {
-        	dao.persist(u);
-            return redirect(routes.Login.show());
-        }
+		Form<Participante> registroPessoa = registroForm.bindFromRequest();
+		Participante u;
+		
+		if (registroForm.hasErrors()) {
+			flash("fail", "Erro na captura dos dados");
+			return badRequest(registro.render(registroForm));
+		}else{
+			u = registroPessoa.get();
+			if (validate(u.getEmail())) {
+				flash("fail", "Email já está em uso");
+	            return badRequest(registro.render(registroForm));
+	        } else {
+	        	dao.persist(u);
+	            return redirect(routes.Login.show());
+	        }
+			
+		}
+		
     }
 
 	private static boolean validate(String email) {

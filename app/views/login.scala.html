@@ -8,14 +8,14 @@
 		</p>
    }
    
-   @helper.form(routes.Login.authenticate) {
+   @helper.form(routes.Login.authenticate()) {
 	   <h1 class="text-center">LogIn</h1
        <p>
 	       <input type="email" name="email" placeholder="Email" value='@form("email").value'
                   class="form-control">
        </p>
        <p>
-	       <input type="password" name="pass" placeholder="Password" class="form-control">
+	       <input type="password" name="senha" placeholder="Password" class="form-control">
        </p>
        <div>
 	       <button class="btn btn-primary" type="submit">Login</button>
