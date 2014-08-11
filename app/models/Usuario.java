@@ -15,8 +15,11 @@ public class Usuario {
 	@NonEmpty
 	private String	email;
 
+	
+	
 	@Required
 	private String	senha;
+
 
 	/**
 	 * @return o email do usuario
@@ -32,6 +35,7 @@ public class Usuario {
 		this.email = email;
 	}
 
+	
 	/**
 	 * @return a senha do usuario
 	 */

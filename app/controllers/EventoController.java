@@ -23,6 +23,7 @@ public class EventoController extends Controller {
 
 	private final static Form<Evento> EVENTO_FORM = form(Evento.class);
 	private final static Form<Participante> participanteForm = form(Participante.class);
+	
 
 	@Transactional
 	public static Result eventosPorTema(int id) throws PessoaInvalidaException, EventoInvalidoException{
@@ -54,7 +55,6 @@ public class EventoController extends Controller {
 	@Transactional
 	public static Result novo() throws PessoaInvalidaException, EventoInvalidoException{
 		Form<Evento> eventoFormRequest = EVENTO_FORM.bindFromRequest();
-
 		if (EVENTO_FORM.hasErrors()) {
 			return badRequest();
 		} else {

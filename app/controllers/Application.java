@@ -21,9 +21,11 @@ public class Application extends Controller {
 	
 	private static boolean criouEventosFake = false;
 	private static GenericDAO dao = new GenericDAOImpl();
+	private static Participante sessionP;
 
 	@Transactional
     public static Result index(){
+		Participante u = (Participante) dao.findByAttributeName("Participante", "email", session().get("email")).get(0);
 		if (session().get("email") == null) {
 			return redirect(routes.Login.show());
 		}
@@ -33,8 +35,18 @@ public class Application extends Controller {
 
 			criouEventosFake = true;
 		}
-        return ok(index.render());
+		setSessionP(u);
+        return ok(index.render(u));
     }
+	
+	public static Participante getSessionP(){
+		return sessionP;
+	}
+	
+	public static void setSessionP(Participante p){
+		sessionP = p;
+		
+	}
 
 	public static GenericDAO getDao(){
 		return dao;

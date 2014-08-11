@@ -1,6 +1,36 @@
 @(form: Form[Participante])
-@main(""){
-<div class="col-sm-4 col-sm-offset-4">
+<html>
+    <head>
+        <title>HackFest-2</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap-theme.min.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.min.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/font-awesome.min.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap-notify.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/swiper.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+        <script src="@routes.Assets.at("javascripts/jquery-2.1.1.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/swiper.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/bootstrap.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/jquery.validate.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/jquery.validate.tooltip.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/bootstrap-notify.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/index.js")" type="text/javascript"></script>
+    </head>
+    <body>
+    	<div class="container">
+			<div class="col-md-12" style="height:80px;margin-top:10px;margin-bottom:10px;border-radius:4px;opacity:.7">
+				<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-8">
+					<a href="#" style="color:white !important" onclick="mySwiper.swipeTo(0);">
+						<i class="fa fa-laptop col-sm-1" style="font-size:80px"></i>
+						<h1 class="col-sm-11" style="margin-top:12px;font-size:50px">&nbsp;&nbsp;&nbsp;<b>HackFest2</b></h1>
+					</a></div>
+				</div>
+			</div>
+		</div>
+        <div class="col-sm-4 col-sm-offset-4">
+   
    @if(flash.contains("fail")) {
    		<p class="bg-danger" style="">
         	@flash.get("fail")
@@ -22,9 +52,13 @@
 	       <input type="password" name="senha" placeholder="Password" class="form-control">
 	   </p>
 	   <div>
-	       <button class="btn btn-primary"  type="submit">Registrar</button>
-	       <a class="btn btn-info" style="float:right;" href="/login"> Login</a>
+	       <button class="btn btn-success"  type="submit">Registrar</button>
+	       <a class="btn btn-info" style="float:right;" href="/login"> Voltar</a>
 	   </div>
 	}
+   
     </div>
-}
+        <div class='notifications top-right'></div>
+    </body>
+</html>
+   
