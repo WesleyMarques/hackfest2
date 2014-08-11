@@ -1,4 +1,4 @@
-web: target/universal/stage/bin/$ccfestufcg
+web: target/universal/stage/bin/$hackfest-d
 -Dhttp.port=${PORT} 
 -DapplyEvolutions.default=true 
 -Ddb.default.driver=org.postgresql.Driver 

@@ -19,7 +19,7 @@ public class Login extends Controller {
 	private static GenericDAO dao = new GenericDAOImpl();
 	
 	public static Result show(){
-		if (session().get("user") != null) {
+		if (session().get("email") != null) {
 			return redirect(routes.Application.index());			
 		}
 		return ok(login.render(loginForm));
@@ -54,6 +54,13 @@ public class Login extends Controller {
 		}
 		
     }
+	
+	@Transactional
+	public static Result logout() {
+		session().clear();
+		flash("success", "Você saiu do sistema!");
+		return ok(login.render(Form.form(Usuario.class)));
+	}
 	
 	private static boolean validate(String email, String senha) {
 		List<Participante> u = dao.findByAttributeName("Participante", "email", email);
