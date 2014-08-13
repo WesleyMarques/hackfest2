@@ -30,7 +30,7 @@ public class Application extends Controller {
 		}
 		if (!criouEventosFake){
 			//List<Evento> eventos = criarEventosFakes();
-			//criarParticipacoesFake(eventos);
+			///criarParticipacoesFake(eventos);
 
 			criouEventosFake = true;
 		}
