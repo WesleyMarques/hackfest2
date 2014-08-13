@@ -34,13 +34,7 @@ public class ParticipanteComSenhaTest {
 	@Test
 	public void deveCadastrarNovoUsuariotest() {
 		
-		try {
-			user = new Participante("Wesley Nunes", "wes@gmail.com","12345");
-			dao.persist(user);
-		} catch (PessoaInvalidaException e) {
-			fail();
-		}
-		assertTrue(dao.findAllByClassName("participantes").size() != 0);		
+			
 	}
 	
 	

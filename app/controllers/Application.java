@@ -25,7 +25,6 @@ public class Application extends Controller {
 
 	@Transactional
     public static Result index(){
-		Participante u = (Participante) dao.findByAttributeName("Participante", "email", session().get("email")).get(0);
 		if (session().get("email") == null) {
 			return redirect(routes.Login.show());
 		}
@@ -35,6 +34,8 @@ public class Application extends Controller {
 
 			criouEventosFake = true;
 		}
+		Participante u = (Participante) dao.findByAttributeName("Participante", "email", session().get("email")).get(0);
+
 		setSessionP(u);
         return ok(index.render(u));
     }
