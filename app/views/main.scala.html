@@ -1,11 +1,11 @@
 @(user: models.Participante)(content: Html)
-
+@import helper._
 <!DOCTYPE html>
 
 <html>
     <head>
         <title>HackFest-2</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="UTF-8">
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap-theme.min.css")">
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.min.css")">
@@ -38,6 +38,7 @@
 		</div>
         @content
         @modalParticipar(user)
+        @modalNovoLocal()
         @modalMaisInformacoes()
         <div class='notifications top-right'></div>
     </body>

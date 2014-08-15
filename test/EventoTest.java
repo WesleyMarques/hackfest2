@@ -19,7 +19,7 @@ public class EventoTest {
 
 	private List<Tema> temas;
 	private Participante admin;
-
+/*
 	@Before
 	public void setUp() throws PessoaInvalidaException {
 		temas = new ArrayList<Tema>();
@@ -102,5 +102,5 @@ public class EventoTest {
 		} catch (EventoInvalidoException e) {
 			assertEquals("Data inválida", e.getMessage());
 		}
-	}
+	}*/
 }

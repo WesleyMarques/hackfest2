@@ -57,8 +57,9 @@ public class Evento {
 	@Required
 	private String admin;
 	
-	@OneToOne
+	@ManyToOne
 	private Local local;
+	
 
 	public Evento() {
 	}

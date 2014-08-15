@@ -1,4 +1,4 @@
-@(user: models.Participante, local: Form[models.Local])
+@(user: models.Participante)
 @main(user) {
 
 <a class="arrow-left" href="#" style="z-index:11"></a> <a class="arrow-right" href="#" style="z-index:11"></a>
@@ -11,7 +11,7 @@
 			@visualizacao()
 		</div>
 		<div class="swiper-slide" style="background-color: rgb(13, 42, 70);">
-			@criacao(local)
+			@criacao()
 		</div>
 	</div>
 	<div class="pagination"></div>

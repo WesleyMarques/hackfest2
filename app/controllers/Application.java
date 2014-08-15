@@ -43,7 +43,7 @@ public class Application extends Controller {
 		Participante u = (Participante) dao.findByAttributeName("Participante", "email", session().get("email")).get(0);
 
 		setSessionP(u);
-        return ok(index.render(u, localForm));
+        return ok(index.render(u));
     }
 	
 	@Transactional

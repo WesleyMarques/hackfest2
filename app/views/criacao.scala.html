@@ -1,6 +1,5 @@
-@(local: Form[models.Local])
 @import helper._
-@criacao(local)
+	
 <div class="container" style="height: 40% !important;height: 100%;">
 	<div class="col-md-12"
 		style="padding: 20px 40px 40px 40px; height: 100%; margin-bottom: 10px; border-radius: 4px; opacity: .9">
@@ -29,7 +28,7 @@
 								  	}
 								</div>
 								<h1 style="font-size: 30px; margin-top:0px;">
-									<b>Locais</b> <button class="btn btn-info" data-toggle="modal" data-target="#modalNovoLocal">Novo Local</button>
+									<b>Locais</b> 
 								</h1>
 								<div id='criacao-local' style="height:100% !important;padding-top:30px;max-height:150px;overflow-x:auto;overflow-y:scroll; " class="list-group">
 									 @for(local <- controllers.EventoController.getLocais()){
@@ -42,7 +41,7 @@
 							</div>
 							<div class="col-md-8" style="height:350px">
 								<h4 style="font-size: 30px; margin-top:0px;">
-									<b>&nbsp;</b><input name="admin" type="text" value="@Application.getSessionP().getEmail()">
+									<b>&nbsp;</b><input name="admin" type="hidden" value="@Application.getSessionP().getEmail()" >
 								</h4>
 								<div style="height:90% !important;max-height:390px;">
 									<div class="row">
@@ -60,6 +59,7 @@
 							</div>
 						</div>
 					}
+					<button class="btn btn-info" data-toggle="modal" data-target="#modalNovoLocal">Novo Local</button>
 				</div> 
 			</div>
 		</div>

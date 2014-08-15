@@ -1,8 +1,5 @@
-@(form: Form[models.Local])
-@import helper._
-
 <!-- Modal -->
-<div style="color: black" class="modal fade" id="modalLocal"
+<div style="color: black" class="modal fade" id="modalNovoLocal"
 	tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
 	aria-hidden="true">
 	<div class="modal-dialog">
@@ -19,12 +16,12 @@
 					<br>
 					<input type="text" class="form-control" name="descricao" placeholder="Digite o endereço" maxlength="70" value=""/>
 					<br>
-					<input type="number" class="form-control" name="capacidade" placeholder="Digite o endereço" maxlength="70" value=""/>
+					<input type="number" class="form-control" name="capacidade" placeholder="Digite a capacidade" maxlength="70" value=""/>
 					
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-				<button type="submit" class="btn btn-success">Confirmar</button>
+				<button type="submit" class="btn btn-success">Cadastrar</button>
 			</div>
 			}
 		</div>
