@@ -6,20 +6,16 @@ import javax.persistence.Id;
 import play.data.format.Formats.NonEmpty;
 import play.data.validation.Constraints.Required;
 
-
 @Entity
 public class Usuario {
 
 	@Id
 	@Required
 	@NonEmpty
-	private String	email;
+	private String email;
 
-	
-	
 	@Required
-	private String	senha;
-
+	private String senha;
 
 	/**
 	 * @return o email do usuario
@@ -35,7 +31,6 @@ public class Usuario {
 		this.email = email;
 	}
 
-	
 	/**
 	 * @return a senha do usuario
 	 */
@@ -43,12 +38,12 @@ public class Usuario {
 		return senha;
 	}
 
-	/** 
+	/**
 	 * @param senha
 	 */
 	public void setSenha(String senha) {
 		this.senha = senha;
-		}
+	}
 
 	@Override
 	public String toString() {

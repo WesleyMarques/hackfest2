@@ -36,7 +36,7 @@
 		</p>
    }
    
-   @helper.form(routes.Login.authenticate()) {
+   @helper.form(routes.LoginController.authenticate()) {
 	   <h1 class="text-center">Login</h1>
        <p>
 	       <input type="email" name="email" placeholder="Email" value='@form("email").value'

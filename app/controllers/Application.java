@@ -32,7 +32,7 @@ public class Application extends Controller {
 	@Transactional
     public static Result index(){
 		if (session().get("email") == null) {
-			return redirect(routes.Login.show());
+			return redirect(routes.LoginController.show());
 		}
 		if (!criouEventosFake){
 			//List<Evento> eventos = criarEventosFakes();

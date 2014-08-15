@@ -13,7 +13,7 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.*;
 
-public class Login extends Controller {
+public class LoginController extends Controller {
 	
 	public static Form<Usuario> loginForm = Form.form(Usuario.class);
 	private static GenericDAO dao = new GenericDAOImpl();
@@ -24,7 +24,6 @@ public class Login extends Controller {
 		}
 		return ok(login.render(loginForm));
 	}
-
 	
 	@Transactional
 	public static Result authenticate() {

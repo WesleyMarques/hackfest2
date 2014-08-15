@@ -11,43 +11,42 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.*;
 
-public class Registro extends Controller{
-	public static Form<Participante> registroForm = Form.form(Participante.class);
+public class RegistroController extends Controller {
+	public static Form<Participante> registroForm = Form
+			.form(Participante.class);
 	private static GenericDAO dao = new GenericDAOImpl();
-	
-	@Transactional
-    public static Result show() {
-        return ok(registro.render(registroForm));
-    }
 
 	@Transactional
-	public static Result registrar() throws Exception{
+	public static Result show() {
+		return ok(registro.render(registroForm));
+	}
+
+	@Transactional
+	public static Result registrar() throws Exception {
 
 		Form<Participante> registroPessoa = registroForm.bindFromRequest();
 		Participante u;
-		
+
 		if (registroForm.hasErrors()) {
 			flash("fail", "Erro na captura dos dados");
 			return badRequest(registro.render(registroPessoa));
-		}else{
+		} else {
 			u = criaParticipante(registroPessoa);
 			if (!validate(u.getEmail())) {
 				flash("fail", "Email já está em uso");
-	            return badRequest(registro.render(registroPessoa));
-	        } else {
-	        	dao.persist(u);
-	        	dao.flush();
-	            return redirect(routes.Login.show());
-	        }
-			
-		}
-		
-    }
-	
-		
-	
+				return badRequest(registro.render(registroPessoa));
+			} else {
+				dao.persist(u);
+				dao.flush();
+				return redirect(routes.LoginController.show());
+			}
 
-	private static Participante criaParticipante(Form<Participante> registroPessoa) throws Exception{
+		}
+
+	}
+
+	private static Participante criaParticipante(
+			Form<Participante> registroPessoa) throws Exception {
 		Participante p = new Participante();
 		p.setEmail(registroPessoa.get().getEmail());
 		p.setNome(registroPessoa.get().getNome());
@@ -56,7 +55,8 @@ public class Registro extends Controller{
 	}
 
 	private static boolean validate(String email) {
-		List<Participante> u = dao.findByAttributeName("Participante", "email", email);
+		List<Participante> u = dao.findByAttributeName("Participante", "email",
+				email);
 		if (u != null && u.isEmpty()) {
 			return true;
 		}
