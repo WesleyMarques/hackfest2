@@ -37,9 +37,7 @@ public class ParticipanteComSenhaTest extends AbstractTest{
 		Evento event = new Evento("Teste", "Testando", new Date(), temas, "wesley@gmail.com", local);
 		dao.persist(event);
 		assertTrue(dao.findAllByClassName("Evento").size()!= 0);
-			
 	}
-	
-	
+
 
 }
