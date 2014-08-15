@@ -8,6 +8,7 @@ import java.util.List;
 
 import models.Evento;
 import models.EventoComparator;
+import models.Local;
 import models.Participante;
 import models.Tema;
 import models.exceptions.EventoInvalidoException;
@@ -21,7 +22,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class EventoController extends Controller {
 
-	private final static Form<Evento> EVENTO_FORM = form(Evento.class);
+	private final static Form<Evento> eventoForm = form(Evento.class);
+	private final static Form<Local> localForm = form(Local.class);
 	private final static Form<Participante> participanteForm = form(Participante.class);
 	
 
@@ -54,8 +56,8 @@ public class EventoController extends Controller {
 	
 	@Transactional
 	public static Result novo() throws PessoaInvalidaException, EventoInvalidoException{
-		Form<Evento> eventoFormRequest = EVENTO_FORM.bindFromRequest();
-		if (EVENTO_FORM.hasErrors()) {
+		Form<Evento> eventoFormRequest = eventoForm.bindFromRequest();
+		if (eventoForm.hasErrors()) {
 			return badRequest();
 		} else {
 			Evento novoEvento = eventoFormRequest.get();
@@ -75,11 +77,17 @@ public class EventoController extends Controller {
 		} else {
 			Evento evento = Application.getDao().findByEntityId(Evento.class, id);
 			Participante novoParticipante = participanteFormRequest.get();
-			
-			Application.getDao().persist(novoParticipante);
+			if (!evento.addParticipante(novoParticipante)) {
+				return badRequest();
+			}				
 			Application.getDao().merge(novoParticipante);
 			Application.getDao().flush();
 			return redirect(controllers.routes.Application.index());
 		}
+	}
+	
+	@Transactional
+	public static List<Local> getLocais() {
+		return Application.getDao().findAllByClassName("Local");
 	}
 }

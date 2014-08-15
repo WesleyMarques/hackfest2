@@ -1,17 +1,21 @@
 package controllers;
 
+import static play.data.Form.form;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
 import models.Evento;
+import models.Local;
 import models.Participante;
 import models.Tema;
 import models.dao.GenericDAO;
 import models.dao.GenericDAOImpl;
 import models.exceptions.EventoInvalidoException;
 import models.exceptions.PessoaInvalidaException;
+import play.data.Form;
 import play.db.jpa.Transactional;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -22,6 +26,8 @@ public class Application extends Controller {
 	private static boolean criouEventosFake = false;
 	private static GenericDAO dao = new GenericDAOImpl();
 	private static Participante sessionP;
+	private final static Form<Local> localForm = form(Local.class);
+
 
 	@Transactional
     public static Result index(){
@@ -37,8 +43,30 @@ public class Application extends Controller {
 		Participante u = (Participante) dao.findByAttributeName("Participante", "email", session().get("email")).get(0);
 
 		setSessionP(u);
-        return ok(index.render(u));
+        return ok(index.render(u, localForm));
     }
+	
+	@Transactional
+	public static Result novoLocal(){
+
+		Form<Local> localFormRequest = LOCAL_FORM.bindFromRequest();
+
+		Participante part = Application.getSessionP();
+		
+		if (localFormRequest.hasErrors()) {
+			return badRequest(cadastroLocal.render(part,localFormRequest));
+		} else {
+			Local local = localFormRequest.get();
+			
+			if (Application.getDao().findAllByClassName("Local").contains(local)) {
+				flash("success", "Local ja cadastrado");
+				return badRequest(cadastroLocal.render(part,localFormRequest));
+			} else {
+				Application.getDao().persist(local);
+			}
+			return redirect(routes.Application.index());
+		}
+	}
 	
 	public static Participante getSessionP(){
 		return sessionP;

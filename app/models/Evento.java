@@ -54,20 +54,24 @@ public class Evento {
 	@NotNull
 	private List<Tema> temas = new ArrayList<Tema>();
 	
-	@NotNull
-	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	private Participante admin;
+	@Required
+	private String admin;
+	
+	@OneToOne
+	private Local local;
 
 	public Evento() {
 	}
 
-	public Evento(String titulo, String descricao, Date data, List<Tema> temas, Participante admin)
+	public Evento(String titulo, String descricao, Date data, List<Tema> temas, String admin, Local local)
 			throws EventoInvalidoException {
 		setTitulo(titulo);
 		setDescricao(descricao);
 		setData(data);
 		setTemas(temas);
 		setAdmin(admin);
+		setLocal(local);
+		
 	}
 
 	public String getTitulo() {
@@ -93,8 +97,11 @@ public class Evento {
 	public List<Tema> getTemas() {
 		return temas;
 	}
+	public String getAdmin(){
+		return this.admin;
+	}
 	
-	public void setAdmin(Participante adminName) {
+	public void setAdmin(String adminName) {
 		this.admin = adminName;
 	}
 
@@ -128,5 +135,27 @@ public class Evento {
 		if (temas.size() == 0)
 			throw new EventoInvalidoException("Nenhum tema");
 		this.temas = temas;
+	}
+	
+	public boolean addParticipante(Participante part){
+		if (participantes.contains(part)) {
+			return false;
+		}
+		participantes.add(part);
+		return true;
+	}
+
+	/**
+	 * @return the local
+	 */
+	public Local getLocal() {
+		return local;
+	}
+
+	/**
+	 * @param local the local to set
+	 */
+	public void setLocal(Local local) {
+		this.local = local;
 	}
 }
