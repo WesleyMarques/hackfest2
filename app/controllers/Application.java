@@ -49,18 +49,18 @@ public class Application extends Controller {
 	@Transactional
 	public static Result novoLocal(){
 
-		Form<Local> localFormRequest = LOCAL_FORM.bindFromRequest();
+		Form<Local> localFormRequest = localForm.bindFromRequest();
 
 		Participante part = Application.getSessionP();
 		
 		if (localFormRequest.hasErrors()) {
-			return badRequest(cadastroLocal.render(part,localFormRequest));
+			return badRequest();
 		} else {
 			Local local = localFormRequest.get();
 			
 			if (Application.getDao().findAllByClassName("Local").contains(local)) {
 				flash("success", "Local ja cadastrado");
-				return badRequest(cadastroLocal.render(part,localFormRequest));
+				return badRequest();
 			} else {
 				Application.getDao().persist(local);
 			}
