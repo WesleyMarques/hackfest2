@@ -13,6 +13,7 @@ import models.Participante;
 import models.Tema;
 import models.exceptions.EventoInvalidoException;
 import models.exceptions.PessoaInvalidaException;
+import play.data.DynamicForm;
 import play.data.Form;
 import play.db.jpa.Transactional;
 import play.mvc.Controller;
@@ -61,14 +62,11 @@ public class EventoController extends Controller {
 			return badRequest();
 		} else {
 			Evento novoEvento = eventoFormRequest.get();
-			
 			Long id = Long.parseLong(form().bindFromRequest().get("local"));
-			System.out.println(id);
 			Local local = Application.getDao().findByEntityId(Local.class, id);
 			novoEvento.setLocal(local);
-			System.out.println(novoEvento.getId()+" "+novoEvento.getAdmin());
+			//System.out.println(novoEvento.getId()+" "+novoEvento.getAdmin());
 			Application.getDao().persist(novoEvento);
-			Application.getDao().merge(novoEvento);
 			Application.getDao().flush();
 			return redirect(controllers.routes.Application.index());
 		}

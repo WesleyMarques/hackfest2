@@ -19,7 +19,7 @@
 								<h1 style="font-size: 30px; margin-top:0px;">
 									<b>Temas</b>
 								</h1>
-								<div id='criacao-temas' style="height:100% !important;padding-top:30px;max-height:170px;overflow-x:auto;overflow-y:scroll; " class="list-group">
+								<div id='criacao-temas' style="height:100% !important;padding-top:30px;max-height:150px;overflow-x:auto;overflow-y:scroll; " class="list-group">
 									 @for(tema <- Tema.values()){
 								  		<div class="row list-group-item">
 								  			<input name="temas[]" class="col-md-1" type="checkbox" href="#" value="@tema.name">
@@ -30,7 +30,7 @@
 								<h1 style="font-size: 30px; margin-top:0px;">
 									<b>Locais</b> 
 								</h1>
-								<div id='criacao-local' style="height:100% !important;padding-top:30px;max-height:150px;overflow-x:auto;overflow-y:scroll; " class="list-group">
+								<div id='criacao-local' style="height:100% !important;padding-top:30px;max-height:100px;overflow-x:auto;overflow-y:scroll; " class="list-group">
 									 @for(local <- controllers.EventoController.getLocais()){
 								  		<div class="row list-group-item">
 								  			<input name="local" class="col-md-1" type="radio" value="@local.getId()">
@@ -41,7 +41,7 @@
 							</div>
 							<div class="col-md-8" style="height:350px">
 								<h4 style="font-size: 30px; margin-top:0px;">
-									<b>&nbsp;</b><input name="admin" type="hidden" value="@Application.getSessionP().getEmail()" >
+									<b>&nbsp;</b><input name="admin" type="text" value="@Application.getSessionP().getEmail()" style="visibility:hidden;">
 								</h4>
 								<div style="height:90% !important;max-height:390px;">
 									<div class="row">

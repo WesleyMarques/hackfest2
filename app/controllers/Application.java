@@ -63,6 +63,7 @@ public class Application extends Controller {
 				return badRequest();
 			} else {
 				Application.getDao().persist(local);
+				Application.getDao().flush();
 			}
 			return redirect(routes.Application.index());
 		}
