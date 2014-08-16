@@ -21,7 +21,7 @@ public class Application extends Controller {
 	private static boolean criouEventosFake = false;
 	private static GenericDAO dao = new GenericDAOImpl();
 	private static Participante sessionP;
-	private final static Form<Local> localForm = form(Local.class);
+	private final static Form<Local> LOCAL_FORM = form(Local.class);
 
 
 	@Transactional
@@ -44,7 +44,7 @@ public class Application extends Controller {
 	@Transactional
 	public static Result novoLocal(){
 
-		Form<Local> localFormRequest = localForm.bindFromRequest();
+		Form<Local> localFormRequest = LOCAL_FORM.bindFromRequest();
 
 		Participante part = Application.getSessionP();
 		
@@ -199,7 +199,7 @@ public class Application extends Controller {
 			return null;
 		}
 	}
-	*/
+	
 	private static void criarParticipacoesFake(List<Evento> eventos) {
 		//Random rnd = new Random();
 		/*try {
@@ -223,8 +223,8 @@ public class Application extends Controller {
 			criarParticipacao(new Participante("Érico Albuquerque", "erico_albuquerque@mail.com", eventos.get(rnd.nextInt(3))));
 			criarParticipacao(new Participante("Érico Albuquerque", "erico_albuquerque@mail.com", eventos.get(rnd.nextInt(3))));
 			criarParticipacao(new Participante("Tairine Reis", "tairine_reis@mail.com", eventos.get(rnd.nextInt(3))));
-		} catch (PessoaInvalidaException e) { }*/
-	}
+		} catch (PessoaInvalidaException e) { }
+	}*/
 	
 	@Transactional
 	private static void criarEvento(Evento evento) {

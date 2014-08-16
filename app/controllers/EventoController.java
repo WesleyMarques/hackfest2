@@ -13,7 +13,6 @@ import models.Participante;
 import models.Tema;
 import models.exceptions.EventoInvalidoException;
 import models.exceptions.PessoaInvalidaException;
-import play.data.DynamicForm;
 import play.data.Form;
 import play.db.jpa.Transactional;
 import play.mvc.Controller;
@@ -23,9 +22,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class EventoController extends Controller {
 
-	private final static Form<Evento> eventoForm = form(Evento.class);
-	private final static Form<Local> localForm = form(Local.class);
-	private final static Form<Participante> participanteForm = form(Participante.class);
+	private final static Form<Evento> EVENTO_FORM = form(Evento.class);
+	private final static Form<Participante> PARTICIPANTE_FORM = form(Participante.class);
 	
 
 	@Transactional
@@ -57,8 +55,8 @@ public class EventoController extends Controller {
 	
 	@Transactional
 	public static Result novo() throws PessoaInvalidaException, EventoInvalidoException{
-		Form<Evento> eventoFormRequest = eventoForm.bindFromRequest();
-		if (eventoForm.hasErrors()) {
+		Form<Evento> eventoFormRequest = EVENTO_FORM.bindFromRequest();
+		if (EVENTO_FORM.hasErrors()) {
 			return badRequest();
 		} else {
 			Evento novoEvento = eventoFormRequest.get();
@@ -74,9 +72,9 @@ public class EventoController extends Controller {
 	
 	@Transactional
 	public static Result participar(long id) throws PessoaInvalidaException, EventoInvalidoException{
-		Form<Participante> participanteFormRequest = participanteForm.bindFromRequest();
+		Form<Participante> participanteFormRequest = PARTICIPANTE_FORM.bindFromRequest();
 		
-		if (participanteForm.hasErrors()) {
+		if (PARTICIPANTE_FORM.hasErrors()) {
 			return badRequest();
 		} else {
 			Evento evento = Application.getDao().findByEntityId(Evento.class, id);

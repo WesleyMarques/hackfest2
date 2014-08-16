@@ -15,7 +15,7 @@ import views.html.*;
 
 public class LoginController extends Controller {
 	
-	public static Form<Usuario> loginForm = Form.form(Usuario.class);
+	private static Form<Usuario> loginForm = Form.form(Usuario.class);
 	private static GenericDAO dao = new GenericDAOImpl();
 	
 	public static Result show(){

@@ -62,12 +62,12 @@ public class Evento {
 
 	public Evento(String titulo, String descricao, Date data, List<Tema> temas, String admin, Local local)
 			throws EventoInvalidoException {
-		this.setTitulo(titulo);
-		this.setDescricao(descricao);
-		this.setData(data);
-		this.setTemas(temas);
-		this.setAdmin(admin);
-		this.setLocal(local);
+		this.titulo = titulo;
+		this.descricao = descricao;
+		this.data = data;
+		this.temas = temas;
+		this.admin = admin;
+		this.local = local;
 		
 	}
 
