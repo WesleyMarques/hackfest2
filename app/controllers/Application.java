@@ -2,19 +2,14 @@ package controllers;
 
 import static play.data.Form.form;
 
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
 import models.Evento;
 import models.Local;
 import models.Participante;
-import models.Tema;
 import models.dao.GenericDAO;
 import models.dao.GenericDAOImpl;
-import models.exceptions.EventoInvalidoException;
-import models.exceptions.PessoaInvalidaException;
 import play.data.Form;
 import play.db.jpa.Transactional;
 import play.mvc.Controller;
@@ -206,7 +201,7 @@ public class Application extends Controller {
 	}
 	*/
 	private static void criarParticipacoesFake(List<Evento> eventos) {
-		Random rnd = new Random();
+		//Random rnd = new Random();
 		/*try {
 			criarParticipacao(new Participante("Alberto Leça", "alberto_leca@mail.com", eventos.get(rnd.nextInt(3))));
 			criarParticipacao(new Participante("Alberto Leça", "alberto_leca@mail.com", eventos.get(rnd.nextInt(3))));
