@@ -5,6 +5,7 @@ import java.util.List;
 import models.Participante;
 import models.dao.GenericDAO;
 import models.dao.GenericDAOImpl;
+import models.exceptions.PessoaInvalidaException;
 import play.data.Form;
 import play.db.jpa.Transactional;
 import play.mvc.Controller;
@@ -12,7 +13,7 @@ import play.mvc.Result;
 import views.html.*;
 
 public class RegistroController extends Controller {
-	public static Form<Participante> registroForm = Form
+	private static Form<Participante> registroForm = Form
 			.form(Participante.class);
 	private static GenericDAO dao = new GenericDAOImpl();
 
@@ -22,7 +23,7 @@ public class RegistroController extends Controller {
 	}
 
 	@Transactional
-	public static Result registrar() throws Exception {
+	public static Result registrar() throws PessoaInvalidaException{
 
 		Form<Participante> registroPessoa = registroForm.bindFromRequest();
 		Participante u;
@@ -45,8 +46,7 @@ public class RegistroController extends Controller {
 
 	}
 
-	private static Participante criaParticipante(
-			Form<Participante> registroPessoa) throws Exception {
+	private static Participante criaParticipante(Form<Participante> registroPessoa) throws PessoaInvalidaException {
 		Participante p = new Participante();
 		p.setEmail(registroPessoa.get().getEmail());
 		p.setNome(registroPessoa.get().getNome());

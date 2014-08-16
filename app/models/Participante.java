@@ -15,8 +15,7 @@ import play.data.validation.Constraints.Required;
 @Entity
 public class Participante {
 
-	private final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+	private final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
 	@Id
 	@GeneratedValue
@@ -48,9 +47,9 @@ public class Participante {
 	 */
 	public Participante(String nome, String email, String senha)
 			throws PessoaInvalidaException {
-		setNome(nome);
-		setEmail(email);
-		setSenha(senha);
+		this.nome = nome;
+		this.email = email;
+		this.senha = senha;
 	}
 
 	

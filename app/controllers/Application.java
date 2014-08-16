@@ -2,8 +2,6 @@ package controllers;
 
 import static play.data.Form.form;
 
-import java.util.List;
-
 
 import models.Evento;
 import models.Local;
@@ -44,10 +42,7 @@ public class Application extends Controller {
 	@Transactional
 	public static Result novoLocal(){
 
-		Form<Local> localFormRequest = LOCAL_FORM.bindFromRequest();
-
-		Participante part = Application.getSessionP();
-		
+		Form<Local> localFormRequest = LOCAL_FORM.bindFromRequest();		
 		if (localFormRequest.hasErrors()) {
 			return badRequest();
 		} else {

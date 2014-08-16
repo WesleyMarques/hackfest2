@@ -34,9 +34,9 @@ public class Local {
 	}
 	
 	public Local(String nome, String desc, int max){
-		this.setNome(nome);
-		this.setDescricao(desc);
-		this.setCapacidade(max);
+		this.nome = nome;
+		this.descricao = desc;
+		this.capacidade = max;
 		
 	}
 

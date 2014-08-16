@@ -2,7 +2,6 @@ package controllers;
 
 import java.util.List;
 
-import net.sf.ehcache.writer.writebehind.operations.DeleteAllOperation;
 import models.Participante;
 import models.Usuario;
 import models.dao.GenericDAO;
