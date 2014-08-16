@@ -1,4 +1,6 @@
+package models;
 import static org.junit.Assert.*;
+import geral.AbstractTest;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,14 +13,11 @@ import models.Tema;
 import models.dao.GenericDAO;
 import models.dao.GenericDAOImpl;
 import models.exceptions.EventoInvalidoException;
-import models.exceptions.PessoaInvalidaException;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 
-public class ParticipanteComSenhaTest extends AbstractTest{
+public class ControllerTests extends AbstractTest{
 
 	GenericDAO dao = new GenericDAOImpl();
 	Participante user;
@@ -26,8 +25,6 @@ public class ParticipanteComSenhaTest extends AbstractTest{
 	
 	@Test
 	public void deveCadastrarEvento() throws EventoInvalidoException {
-		Participante part = new Participante(nome, email, senha)
-		dao.persist(part);
 		Local local = new Local("UFCG", "manoel do o junior", 10);
 		dao.persist(local);
 		assertEquals(((Local)(dao.findAllByClassName("Local").get(0))).getNome(), "UFCG");

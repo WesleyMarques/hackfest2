@@ -33,7 +33,7 @@
 								<div id='criacao-local' style="height:100% !important;padding-top:30px;max-height:150px;overflow-x:auto;overflow-y:scroll; " class="list-group">
 									 @for(local <- controllers.EventoController.getLocais()){
 								  		<div class="row list-group-item">
-								  			<input name="local" class="col-md-1" type="radio" href="#" value="@local.getId()">
+								  			<input name="local" class="col-md-1" type="radio" value="@local.getId()">
 								  			<span class="col-md-5">@local.getNome()</span>
 								  		</div>
 								  	}

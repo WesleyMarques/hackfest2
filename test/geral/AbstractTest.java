@@ -1,3 +1,4 @@
+package geral;
 import javax.persistence.EntityManager;
 
 import org.junit.After;
