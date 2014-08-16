@@ -4,19 +4,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -66,12 +62,12 @@ public class Evento {
 
 	public Evento(String titulo, String descricao, Date data, List<Tema> temas, String admin, Local local)
 			throws EventoInvalidoException {
-		setTitulo(titulo);
-		setDescricao(descricao);
-		setData(data);
-		setTemas(temas);
-		setAdmin(admin);
-		setLocal(local);
+		this.setTitulo(titulo);
+		this.setDescricao(descricao);
+		this.setData(data);
+		this.setTemas(temas);
+		this.setAdmin(admin);
+		this.setLocal(local);
 		
 	}
 
