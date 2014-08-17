@@ -46,7 +46,6 @@ public class LoginController extends Controller {
 	        			"Participante", "email", userA.getEmail()).get(0);
 	            session().clear();
 	            session("email", user.getEmail());
-	            System.err.println("cheguei");
 	            return redirect(routes.Application.index());
 	        }
 		}

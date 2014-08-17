@@ -78,11 +78,12 @@ public class EventoController extends Controller {
 			return badRequest();
 		} else {
 			Evento evento = Application.getDao().findByEntityId(Evento.class, id);
-			Participante novoParticipante = participanteFormRequest.get();
+			Participante novoParticipante = Application.getSessionP();
+//			Participante novoParticipante = participanteFormRequest.get();
 			if (!evento.addParticipante(novoParticipante)) {
 				return badRequest();
-			}				
-			Application.getDao().merge(novoParticipante);
+			}
+			Application.getDao().merge(evento);
 			Application.getDao().flush();
 			return redirect(controllers.routes.Application.index());
 		}

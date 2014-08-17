@@ -46,6 +46,7 @@ $(document).on('ready', function(event) {
 							modal.find('.modal-descricao-evento').html(infoEvento.descricao);
 							modal.find('.modal-data-evento').val(new Date(infoEvento.data).toLocaleDateString());
 							modal.find('.modal-total-evento').val(infoEvento.totalDeParticipantes);
+							modal.find('.modal-local-evento').val(infoEvento.local.nome);
 							
 							modal.modal('show');
 						});
@@ -120,7 +121,7 @@ $(document).on('ready', function(event) {
 					
 					$('.top-right').notify({
 						 message : {
-						 	text : 'Evento criado com sucesso'
+						 	text : 'Participação confirmada'
 						 },
 						 type : "success"
 					 }).show(); 
@@ -128,7 +129,7 @@ $(document).on('ready', function(event) {
 				error: function (){
 					 $('.top-right').notify({
 						 message : {
-						 	text : 'Erro ao criar o evento'
+						 	text : 'Participação não confirmada'
 						 },
 						 type : "danger"
 					 }).show(); 

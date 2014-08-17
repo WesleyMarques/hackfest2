@@ -89,4 +89,8 @@ public class Local {
 		this.capacidade = capacidade;
 	}
 
+	@Override
+	public String toString() {
+		return this.getNome()+"-"+this.getDescricao();
+	}
 }
