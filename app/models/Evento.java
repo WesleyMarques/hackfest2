@@ -98,6 +98,10 @@ public class Evento {
 		return this.admin;
 	}
 	
+	public List<Participante> getParticipantes(){
+		return this.participantes;
+	}
+	
 	public void setAdmin(String adminName) {
 		this.admin = adminName;
 	}

@@ -17,6 +17,8 @@ import play.data.Form;
 import play.db.jpa.Transactional;
 import play.mvc.Controller;
 import play.mvc.Result;
+import views.html.index;
+import views.html.meusEventos;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -52,7 +54,26 @@ public class EventoController extends Controller {
 		
 		return ok(json);
 	}
+	@Transactional
+	public static Result listaInscritos(String email){
+		Long idEvento = Long.parseLong(form().bindFromRequest().get("select-evento"));
+		Evento evento = Application.getDao().findByEntityId(Evento.class, idEvento);
+		return ok(meusEventos.render(Application.getSessionP(), evento));
+	}
 	
+	@Transactional
+	public static Result meusEventos(){
+		if (session().get("email") == null) {
+			return redirect(routes.LoginController.show());
+		}
+		Participante p = Application.getSessionP();
+		return ok(meusEventos.render(p, (Evento)Application.getDao().findAllByClassName("Evento").get(0)));
+	}
+	@Transactional
+	public static List<Evento> getEventosByOwnUser(){
+		List<Evento> eventoAdmin = Application.getDao().findByAttributeName("Evento", "admin", Application.getSessionP().getEmail());
+		return eventoAdmin;		
+	}
 	@Transactional
 	public static Result novo() throws PessoaInvalidaException, EventoInvalidoException{
 		Form<Evento> eventoFormRequest = EVENTO_FORM.bindFromRequest();
@@ -72,9 +93,8 @@ public class EventoController extends Controller {
 	
 	@Transactional
 	public static Result participar(long id) throws PessoaInvalidaException, EventoInvalidoException{
-		Form<Participante> participanteFormRequest = PARTICIPANTE_FORM.bindFromRequest();
 		
-		if (PARTICIPANTE_FORM.hasErrors()) {
+		if (PARTICIPANTE_FORM.bindFromRequest().hasErrors()) {
 			return badRequest();
 		} else {
 			Evento evento = Application.getDao().findByEntityId(Evento.class, id);
