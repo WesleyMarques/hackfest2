@@ -94,9 +94,10 @@ public class EventoController extends Controller {
 	@Transactional
 	public static Result participar(long id) throws PessoaInvalidaException, EventoInvalidoException{
 		
-		if (PARTICIPANTE_FORM.bindFromRequest().hasErrors()) {
-			return badRequest();
-		} else {
+		//if (PARTICIPANTE_FORM.bindFromRequest().hasErrors()) {
+			//return badRequest();
+			//return ok();
+		//} else {
 			Evento evento = Application.getDao().findByEntityId(Evento.class, id);
 			Participante novoParticipante = Application.getSessionP();
 //			Participante novoParticipante = participanteFormRequest.get();
@@ -106,7 +107,7 @@ public class EventoController extends Controller {
 			Application.getDao().merge(evento);
 			Application.getDao().flush();
 			return redirect(controllers.routes.Application.index());
-		}
+		//}
 	}
 	
 	@Transactional
